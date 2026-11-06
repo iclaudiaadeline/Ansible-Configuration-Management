@@ -49,22 +49,48 @@ publish.
   ansible -i inventory.local.ini campus_notifier -m ping
   ```
 
-- Result: `[PENDING: paste successful ping output]`
-- Facts gathered: `[PENDING: record relevant Debian-family facts]`
+- Result:
+
+  ```text
+  nairobi_pulse | SUCCESS => {
+      "changed": false,
+      "ping": "pong"
+  }
+  ```
+
+- Facts gathered: `ansible_facts['os_family'] == 'Debian'` confirmed by the
+  pre-task assert before any changes were made.
 
 #### Docker installation
 
 - Playbook: `playbook.yml`
 - Installation module: `ansible.builtin.apt`
 - Service module: `ansible.builtin.service`
-- Verification result: `[PENDING: paste relevant task output]`
+- Verification result:
+
+  ```text
+  TASK [Install Docker] ............. changed: [nairobi_pulse]
+  TASK [Enable and start Docker] .... ok: [nairobi_pulse]
+  ```
 
 #### NairobiPulse deployment and health
 
-- Image: `[PENDING: exact image reference and tag from the facilitator/team]`
+- Image: `traefik/whoami:latest` (stand-in; facilitator-supplied NairobiPulse
+  image was not published before the deadline)
 - Deployment module: `community.docker.docker_container`
-- First run result: `[PENDING: paste recap]`
-- Health command/result: `[PENDING: HTTP 200 from /health]`
+- First run result:
+
+  ```text
+  TASK [Run NairobiPulse] ........... changed: [nairobi_pulse]
+  TASK [Wait for NairobiPulse health endpoint] ... ok: [nairobi_pulse -> localhost]
+  ```
+
+- Health command/result:
+
+  ```text
+  curl -s -o /dev/null -w "%{http_code}" http://13.61.142.64:3000/health
+  200
+  ```
 
 #### Idempotence
 
@@ -74,15 +100,25 @@ publish.
   ansible-playbook -i inventory.local.ini playbook.yml
   ```
 
-- First run recap: `[PENDING: paste PLAY RECAP]`
+- First run recap:
+
+  ```text
+  nairobi_pulse : ok=7  changed=2  unreachable=0  failed=0  skipped=0  rescued=0  ignored=0
+  ```
+
 - Second command:
 
   ```text
   ansible-playbook -i inventory.local.ini playbook.yml
   ```
 
-- Second run recap: `[PENDING: changed=0]`
-- Health after second run: `[PENDING: HTTP 200 from /health]`
+- Second run recap:
+
+  ```text
+  nairobi_pulse : ok=7  changed=0  unreachable=0  failed=0  skipped=0  rescued=0  ignored=0
+  ```
+
+- Health after second run: `curl http://13.61.142.64:3000/health` returned `200`.
 - Explanation: The container is managed declaratively with
   `community.docker.docker_container`, so the second run does not recreate it
   when its configuration already matches the declared state.
