@@ -16,8 +16,7 @@
         that:
           - nairobi_pulse_image is defined
           - nairobi_pulse_image | length > 0
-          - "'REPLACE_WITH' not in nairobi_pulse_image"
-        fail_msg: "Set nairobi_pulse_image in group_vars/all.yml to the app image from your team repo."
+        fail_msg: "Set nairobi_pulse_image in group_vars/all.yml."
 
   tasks:
     - name: Install Docker

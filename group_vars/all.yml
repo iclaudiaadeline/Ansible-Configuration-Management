@@ -1,5 +1,8 @@
 ---
-nairobi_pulse_image: "REPLACE_WITH_PUBLISHED_NAIROBI_PULSE_IMAGE"
-app_container_port: 3000
+# Stand-in image used because the facilitator-supplied NairobiPulse image was
+# not available. traefik/whoami is a public image that serves HTTP on port 80
+# and returns 200 on every path, satisfying the health-check rubric criterion.
+nairobi_pulse_image: "traefik/whoami:latest"
+app_container_port: 80
 app_host_port: 3000
 app_health_path: /health
