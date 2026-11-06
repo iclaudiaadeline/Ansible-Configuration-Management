@@ -1,0 +1,12 @@
+*.pem
+*.key
+*.retry
+.env
+.vault_pass
+inventory.local.ini
+*.tfstate
+*.tfstate.*
+.terraform/
+*.tfvars
+!*.tfvars.example
+terraform/backend.local.hcl
