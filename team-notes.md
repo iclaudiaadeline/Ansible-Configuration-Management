@@ -146,9 +146,12 @@ publish.
 
 ## Teardown
 
-- Current server status: `[PENDING: verify in AWS; local Terraform state could
-  not be read because the AWS provider cache needs reinitialization]`
-- Application host destroyed: `[PENDING: Terraform destroy result]`
-- Database host destroyed: `[PENDING: Terraform destroy result]`
-- Account-local state/bootstrap resources handled as required: `[PENDING]`
-- AWS console or CLI verification that no assigned servers remain: `[PENDING]`
+- Current server status: destroyed.
+- Application and database hosts destroyed:
+
+  ```text
+  Destroy complete! Resources: 5 destroyed.
+  ```
+
+- Account-local state and bootstrap resources handled.
+- No assigned servers remain in the account.
