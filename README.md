@@ -226,13 +226,12 @@ account-specific host addresses.
 
 ### Drill 5 evidence (this account)
 
-- Database host: `database_box` at `<your database public IP>` (Terraform
-  instance `<your Terraform instance ID>`).
+- Database host: `database_box`, addressed through the Terraform output
+  `database_public_ip`.
 - Bootstrap: account-local encrypted/versioned S3 state bucket and DynamoDB
   lock table created; main Terraform initialized against that backend.
 - Database host apply: `3 added, 0 changed, 0 destroyed`.
-- SSH: `ssh -i ~/.ssh/<your-key> ubuntu@<your database public IP>` returned
-  `SSH_OK`.
+- SSH: SSH to the database host as `ubuntu` returned `SSH_OK`.
 - Ansible: `ansible -i inventory.local.ini database -m ping` returned
   `database_box | SUCCESS`, `changed: false`, `ping: pong`.
 - SSH fix: registered the public key in EC2, loaded the private key locally,

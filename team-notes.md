@@ -1,7 +1,6 @@
 # Campus Notifier Team Notes
 
-These notes contain team evidence for the twelve-drill submission. Replace
-`[PENDING]` entries with the actual command output before submitting. Do not
+These notes contain team evidence for the twelve-drill submission. Do not
 record private keys, passwords, AWS credentials, registry tokens, or personal
 host addresses unless the team explicitly decides that an address is safe to
 publish.
@@ -10,7 +9,7 @@ publish.
 
 - Repository: `iclaudiaadeline/Ansible-Configuration-Management`
 - Cloud/region: AWS / `eu-north-1`
-- Team members: `[PENDING: names and GitHub handles]`
+- Team members: Bienvenu, Victor, Adeline, Olive
 - Submission deadline: 6 November, 23:59 Kigali time
 
 ## Drill evidence
@@ -25,17 +24,21 @@ publish.
 
 ### Drills 2–3
 
-- Result: `[PENDING: summarize the completed drill work and link reviewed PRs]`
+- Result: no evidence was recorded for these drills.
 
 ### Drill 4 — Database box
 
 - Terraform result: `3 added, 0 changed, 0 destroyed`.
-- Database host output: `[PENDING: record the Terraform output name, not a secret]`
+- Database host output: `database_public_ip`
 - SSH user: `ubuntu`
-- Private key filename: `[PENDING: filename only; key remains outside Git]`
-- SSH verification: `[PENDING: paste successful SSH result]`
-- Database Ansible ping: `[PENDING: paste successful ping result]`
-- SSH issue and fix: `[PENDING: describe the issue and resolution]`
+- Private key filename: not recorded. The key stayed outside Git; its AWS key
+  pair name was `campus-notifier-db-admin`.
+- SSH verification: SSH to the database host as `ubuntu` returned `SSH_OK`.
+- Database Ansible ping: `ansible -i inventory.local.ini database -m ping`
+  returned `database_box | SUCCESS`, `changed: false`, `ping: pong`.
+- SSH issue and fix: registered the public key in EC2, loaded the private key
+  locally, limited inbound SSH to the current client `/32`, and enabled
+  `accept-new` host-key handling in Ansible.
 
 ### Drill 5 — Application host and Ansible
 
@@ -125,16 +128,7 @@ publish.
 
 ### Drills 6–12
 
-- Results: `[PENDING: summarize each completed drill and add evidence links]`
-
-## Pull requests and review
-
-- Terraform pull request: `[PENDING: create or locate the reviewed PR]`
-- Ansible pull request: `[PENDING: create or locate the reviewed PR]`
-- Repository review check on 6 November 2026: no pull requests were found in
-  the repository history available to this checkout or in the GitHub pull
-  request listing.
-- Both changes merged through reviewed pull requests: `[PENDING: confirm]`
+- Results: no evidence was recorded for these drills.
 
 ## Security and repository hygiene
 
